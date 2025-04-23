@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import io.micrometer.common.util.StringUtils;
@@ -42,8 +44,23 @@ public class BookMstService {
 
         return bookMstDtoList;
     }
+
+
+    public void save(BookMstDto bookMstDto) {  //saveのメソッド
+        //BookMstDto から Bookへの変換
+        BookMst bookMst = new BookMst();
+
+        bookMst.setTitle(bookMstDto.getTitle());
+        bookMst.setIsbn(bookMstDto.getIsbn());
+
+        //データベースへの保存
+        bookMstRepository.save(bookMst);
+    }
+
+    public int isbnExists(String isbn){
+        return bookMstRepository.existByIsbn(isbn);
+    }
     
 }
-
 
 
