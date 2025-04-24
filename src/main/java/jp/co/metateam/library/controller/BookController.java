@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import io.micrometer.common.util.StringUtils;
 import jakarta.el.ELException;
 import jakarta.validation.Valid;
 import jp.co.metateam.library.model.Account;
@@ -58,24 +59,26 @@ public class BookController {
     public String register(@Valid @ModelAttribute BookMstDto bookMstDto, BindingResult result, RedirectAttributes ra) {
         
         //書籍名チェック
-        if(bookMstDto.getTitle() == null || bookMstDto.getTitle().isEmpty()) {
+        if(StringUtils.isEmpty(bookMstDto.getTitle())){
             result.rejectValue("title", "required", "書籍名は必須です");
-        } else {if(bookMstDto.getTitle().length() > 256){
+        } else {if(bookMstDto.getTitle().length() > 255){
                 result.rejectValue("title", "length", "書籍名は255字以内で入力してください");
             } 
         }
         
         //ISBNチェック
-        if(bookMstDto.getIsbn() == null || bookMstDto.getIsbn().isEmpty()) {
+        if(StringUtils.isEmpty(bookMstDto.getTitle())) {
             result.rejectValue("isbn", "required", "ISBNは必須です");
-            } else if(bookMstDto.getIsbn().length() != 13){
+            }
+        if(bookMstDto.getIsbn().length() != 13){
                 result.rejectValue("isbn", "length", "ISBNは13字で入力してください");
-            } else if (!bookMstDto.getIsbn().matches("\\d+")) {
+            }
+        if (!bookMstDto.getIsbn().matches("\\d+")) {
             result.rejectValue("isbn", "format", "ISBNは半角数字で入力してください");
         } 
 
         if (result.hasErrors()){
-                return "/book/add";    
+            return "/book/add";
         }
            
         if (bookMstService.isbnExists(bookMstDto.getIsbn()) > 0){
@@ -83,13 +86,13 @@ public class BookController {
         }
     
         if (result.hasErrors()){
-        return "/book/add";
+            return "book/add";
         }
         
         //書籍を登録する
         bookMstService.save(bookMstDto);
             
-        return "redirect:/book/index";
+        return "redirect:book/index";
         
     }
 } 
