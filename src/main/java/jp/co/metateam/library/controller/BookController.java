@@ -78,7 +78,7 @@ public class BookController {
         } 
 
         if (result.hasErrors()){
-            return "/book/add";
+            return "book/add";
         }
            
         if (bookMstService.isbnExists(bookMstDto.getIsbn()) > 0){
@@ -92,7 +92,7 @@ public class BookController {
         //書籍を登録する
         bookMstService.save(bookMstDto);
             
-        return "redirect:book/index";
+        return "redirect:/book/index";
         
     }
 } 
