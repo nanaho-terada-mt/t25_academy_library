@@ -1,65 +1,67 @@
-.books_table {
- width: 100%;
- text-align: left;
- border-collapse: collapse;
- border-spacing: 0;
- border-radius:10px;
+.book_table{
+ width: 80%;  /*横幅いっぱいに広げる*/
+ text-align: left; /*左寄せで文字そろえる*/
+ margin: 0 auto; 
+ border-collapse: collapse; /*セルの間にスキマ無くす*/
+ border-spacing: 0;  /*表のセルとセルの間隔を空ける*/
+ border-radius:10px; /*角を丸くする*/
+ padding: 50px; /*上下左右の空白←tableタグには効かない*/
 }
 
-.books_table th{
+.book_table th{
   padding: 10px;
-  background: rgba(0,0,0,0.06);
-  padding: 13px;
+  background: rgba(27, 26, 26, 0.06);
+  padding: 10px;
   border: solid 1px #B9B9B9;
   color: #545454;
-  font-size: 18px;
+  font-size: 10px;
 }
 
-.books_table td{
+.book_table td{
   text-align: left;
   vertical-align: top;
   background: #FFFFFF;
   border: solid 1px #B9B9B9;
-  padding: 13px;
-  font-size: 20px;
+  padding: 10px;
+  font-size: 12px;
 }
 
-.books_table td:nth-child(1){
+.book_table td:nth-child(1){
   width: 40%;
 }
 
-.books_table td:nth-child(1) .book_title_contents{
+.book_table td:nth-child(1) .book_title_contents{
   display: flex;
   align-items: center;
 }
 
-.books_table td:nth-child(1) .book_title_contents span{
+.book_table td:nth-child(1) .book_title_contents span{
   display: inline-block;
   margin-left:10px;
 }
 
-.books_table td .stockcount{
+.book_table td .stockcount{
   display: inline-block;
   width: 50px;
   text-align: center;
 }
 
-.books_table td img{
+.book_table td img{
   margin: 8px 2px 0 2px;
   height: auto;
 }
-.books_table td img:hover{
+.book_table td img:hover{
   cursor: pointer;
   opacity: 0.6;
 }
-.books_table td .edit_icon{
+.book_table td .edit_icon{
   width:23px;
 }
-.books_table td .trash_icon{
+.book_table td .trash_icon{
   width:19px;
 }
 
-.books_table td a{
+.book_table td a{
   color: #0000EE;
 }
 

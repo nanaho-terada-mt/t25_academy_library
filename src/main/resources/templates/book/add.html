@@ -16,26 +16,24 @@
                 <div class="page_title">書籍登録</div>
                 <div class="page_contents">
                     <form id="book_register_form" th:object="${bookMstDto}" th:action="@{/book/add}" method="post">
-                        <div class="mb30 flexarea">
+                        <div class="mb30_flexarea">
+                            <span>
+                                <p>*は必須項目です</p>
+                            </span>
                             <span>
                                 <a th:href="@{/book/index}" class="link">← 一覧へ戻る</a>
                             </span>
-                        </div>
-                        <div class="mb30 flexarea">
-                            <p style="color: red;">*は必須項目です</p>
-                        </div>
+                         </div>
                           <div class="form-group"> 
-                            <label for="title">書籍名<span style="color: red;">*</span></label><br>                     
-                            <input type="text" id="title" th:field="*{title}" placeholder="書籍名を入力"/><br>
-                            <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="error" Style="color: red;"></div>
+                            <label for="title">書籍名<span class="highlight">*</span></label><br>                     
+                            <input type="text" class="input-long" id="title" th:field="*{title}" placeholder="書籍名を入力"/><br>
+                            <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="error"></div>
 
-                            <label for="ISBN">ISBN<span style="color: red;">*</span></label><br>
-                            <input type="text" id="isbn" th:field="*{isbn}" placeholder="ISBNを入力"/><br>
-                            <div th:if="${#fields.hasErrors('isbn')}" th:errors="*{isbn}" class="error" Style="color: red;"></div>
+                            <label for="ISBN">ISBN<span class="highlight">*</span></label><br>
+                            <input type="text" class="input-long" id="isbn" th:field="*{isbn}" placeholder="ISBNを入力"/><br>
+                            <div th:if="${#fields.hasErrors('isbn')}" th:errors="*{isbn}" class="error"></div>
                           </div>
-                          <div class="mb30 flexarea">
-                              <button type="submit">保存</button>
-                          </div>
+                          <button class="submit_btn">保存</button>
                     </form>
                 </div>
             </div>
